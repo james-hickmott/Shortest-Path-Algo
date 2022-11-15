@@ -13,40 +13,93 @@ canvas1.updateAllNeighbours();
 canvas1.resize();
 canvas1.canvas.id = 'canvasID';
 
-// declaring the mini-map
-var canvasMinimap = new Minimap(canvas1, 310, 310, 100, 100);
+var overlay = document.getElementById('overlay');
+var yesButton = document.getElementById('wantsMinimaps');
+var noButton = document.getElementById('doesNotWantMinimaps');
 
-// declaring the nodeMap
-var nodeMap = new nodeInfo(canvas1, 310);
+var buttonsContainer = document.getElementById('buttonsContainer');
 
-// adding the event listeners to canvas1 so that
-// the user can draw brush/erase
-// and so nodeMap can update nodes.
-canvas1.canvas.addEventListener("mousedown", function(event) {canvas1.mouseDown(event);});
-canvas1.canvas.addEventListener("mouseup", function() {canvas1.mouseUp()});
-canvas1.canvas.addEventListener("mousemove", function (event) {
-    canvas1.mouseMove(event);
-    nodeMap.getNodeList(event);
-});
-canvas1.canvas.addEventListener('mouseout', function () {canvas1.mouseUp()});
+yesButton.onclick = function() {
+    userDoesWantMinimaps();
+    overlay.style.display = 'none';
+}
 
-// canvas minimap needs cursor information of the canvas to adding event listeners
-document.addEventListener("mousemove", function (event) {canvasMinimap.getData(event)});
-document.addEventListener("mousedown", function (event) {canvasMinimap.getData(event)});
+noButton.onclick = function() {
+    userDoesNotWantMinimaps();
+    overlay.style.display = 'none';
+}
 
-// for resizing the page
-let t = window.innerWidth-window.innerHeight.toString()
-let text = `${t}px`;
-document.getElementById('rightSide').style.width = text;
+/// onresize add a button that changes the grid-auto-rows size of the #buttonsContainer
 
-window.onresize = function() {
-    canvas1.resize();
+
+
+function userDoesWantMinimaps() { // if they want node info and minimap
+    // declaring the mini-map
+    var canvasMinimap = new Minimap(canvas1, 310, 310, 100, 100);
+
+    // declaring the nodeMap
+    var nodeMap = new nodeInfo(canvas1, 310);
+
+    // adding the event listeners to canvas1 so that
+    // the user can draw brush/erase
+    // and so nodeMap can update nodes.
+    canvas1.canvas.addEventListener("mousedown", function(event) {canvas1.mouseDown(event);});
+    canvas1.canvas.addEventListener("mouseup", function() {canvas1.mouseUp()});
+    canvas1.canvas.addEventListener("mousemove", function (event) {
+        canvas1.mouseMove(event);
+        nodeMap.getNodeList(event);
+    });
+    canvas1.canvas.addEventListener('mouseout', function () {canvas1.mouseUp()});
+
+    // canvas minimap needs cursor information of the canvas to adding event listeners
+    document.addEventListener("mousemove", function (event) {canvasMinimap.getData(event)});
+    document.addEventListener("mousedown", function (event) {canvasMinimap.getData(event)});
+
+    // for resizing the page
     let t = window.innerWidth-window.innerHeight.toString()
     let text = `${t}px`;
     document.getElementById('rightSide').style.width = text;
-    canvasMinimap.sampleWidth = canvas1.canvas.width/4;
-    canvasMinimap.sampleHeight = canvas1.canvas.width/4;
-};
+
+    window.onresize = function() {
+        canvas1.resize();
+        let t = window.innerWidth-window.innerHeight.toString()
+        let text = `${t}px`;
+        document.getElementById('rightSide').style.width = text;
+        canvasMinimap.sampleWidth = canvas1.canvas.width/4;
+        canvasMinimap.sampleHeight = canvas1.canvas.width/4;
+    };
+} 
+function userDoesNotWantMinimaps() { // if they dont want node info or minimap
+    canvas1.canvas.addEventListener("mousedown", function(event) {canvas1.mouseDown(event);});
+    canvas1.canvas.addEventListener("mouseup", function() {canvas1.mouseUp()});
+    canvas1.canvas.addEventListener("mousemove", function (event) {
+        canvas1.mouseMove(event);
+    });
+    canvas1.canvas.addEventListener('mouseout', function () {canvas1.mouseUp()});
+
+    /// need to call this because when page loads window.onresize is not called; only when window is resized
+    let t = window.innerWidth-window.innerHeight.toString()
+    let text = `${t}px`;
+    document.getElementById('rightSide').style.width = text;
+
+    let t2 = (window.innerHeight/5).toString();
+    let text2 = `${t2}px`;
+    buttonsContainer.style.gridAutoRows = text2;
+
+    window.onresize = function() {
+        canvas1.resize();
+        let t = window.innerWidth-window.innerHeight.toString();
+        let text = `${t}px`;
+        document.getElementById('rightSide').style.width = text;
+
+
+        let t2 = (window.innerHeight/5).toString();
+        let text2 = `${t2}px`;
+        buttonsContainer.style.gridAutoRows = text2;
+
+        // delete current minimap and node info and remove event listeners and create new ones and add their listeners
+    }
+}
 
 ///                 BUTTONS                   ///
 let a;
