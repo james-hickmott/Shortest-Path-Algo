@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: rgb(61, 66, 82);
+  white-space: nowrap;
+  height: 100%;
+}
+
+#canvasID {
+  display: inline-block;
+  position: absolute;
+  border: 1px solid black;
+}
+
+#rightSide {
+  position: absolute;
+  right: 0px;
+  display: inline-block;
+  white-space: normal;
+  height: 100%;
+}
+
+#Minimap {
+  display: inline-block;
+  outline: 1px solid black;
+}
+
+#nodeMap {
+  display:inline-block;
+  outline: 1px solid black;
+}
+
+#infoContainer {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+}
+
+#buttonsContainer {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-auto-rows: 100px;
+}
+
+button {
+  margin: 0px;
+  padding: 0px;
+  border: none;
+  border-radius: 0px;
+  color: white;
+  font-size: 30px;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+}
+
+#AStar {
+  background-color: orange;
+}
+#ClearCanvas {
+  background-color: #00AC15;
+}
+#binaryTreeMaze {
+  background-color: #9FD547;
+}
+#GreedyBestFirst {
+  background-color: #C362FB;
+}
+#clearSolution {
+  background-color: #3566FF;
+}
+#sideWinderMaze {
+  background-color: #628CFB;
+}
+#brush {
+  background-color: #FF4999;
+}
+#eraser {
+  background-color: #6800FF;
+}
+
+#brushCircle {
+  position: absolute;
+  left: 24%;
+  height: 7px;
+  width: 7px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+#eraserCircle {
+  position: absolute;
+  left: 74%;
+  height: 7px;
+  width: 7px;
+  background-color: white;
+  border-radius: 50%;
+  opacity: 0;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.startstopA {
+  color: white;
+  font-size: 10px;
+  position: absolute;
+  left: 20%;
+}
+
+.startstopB {
+  color: white;
+  font-size: 10px;
+  position: absolute;
+  right: 20%;
+}
