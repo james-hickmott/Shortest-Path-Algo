@@ -1,6 +1,6 @@
 import { Canvas } from './canvas.js';
 import { AStar, Greedy } from './Algorithms.js';
-import { binaryTreeMaze, verticalMaze, sideWinderMaze } from './MazeGenerators.js';
+import { binaryTreeMaze, verticalMaze, sideWinderMaze } from './mazeGenerators.js';
 import { Minimap } from './Minimap.js';
 import { nodeInfo } from './node_info.js';
 
