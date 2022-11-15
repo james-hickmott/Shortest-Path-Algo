@@ -51,7 +51,7 @@ button {
   border: none;
   border-radius: 0px;
   color: white;
-  font-size: 30px;
+  font-size: 2vw;
   font-family: 'Montserrat', sans-serif;
   cursor: pointer;
 }
@@ -108,12 +108,50 @@ button:hover {
   color: white;
   font-size: 10px;
   position: absolute;
-  left: 20%;
+  left: 25%;
+  transform: translate(-50%, 0%);
 }
 
 .startstopB {
   color: white;
   font-size: 10px;
   position: absolute;
-  right: 20%;
+  left: 75%;
+  transform: translate(-50%, 0%);
+}
+
+#overlay {
+  position: fixed;
+  display: inline-block;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(61, 66, 82);
+  z-index: 2;
+}
+
+#introQuestion {
+  font-family: 'Montserrat', sans-serif;
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, 0%);
+  color: white;
+}
+
+#doesNotWantMinimaps {
+  position: absolute;
+  left: 43%;
+  top: 50%;
+  background-color: rgb(61, 66, 82);
+}
+
+#wantsMinimaps {
+  position: absolute;
+  left: 53%;
+  top: 50%;
+  background-color: rgb(61, 66, 82);
 }
