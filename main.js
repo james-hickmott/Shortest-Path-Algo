@@ -6,7 +6,7 @@ import { nodeInfo } from './node_info.js';
 
 
 // decalring the canvas for nodes and drawing
-var canvas1 = new Canvas(100, 100);
+var canvas1 = new Canvas(35, 35);
 canvas1.makeGrid();
 canvas1.drawCanvas();
 canvas1.updateAllNeighbours();
